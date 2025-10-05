@@ -7,6 +7,104 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <!-- Верхняя панель с информацией о пользователе -->
+        <Border Background="#2E86AB" Padding="10" Height="40" VerticalAlignment="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
+                <TextBlock Grid.Column="0" Text="ZooTicket - Система учета билетов" 
+                          Foreground="White" FontSize="16" FontWeight="Bold"/>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock x:Name="UserInfoText" Foreground="White" Margin="0,0,10,0"/>
+                    <Button Content="Выйти" Click="LogoutButton_Click" 
+                            Background="#A23B72" Foreground="White" Padding="10,5"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- ТВОЙ СТАРЫЙ КОД С TABCONTROL - просто добавляешь Margin -->
+        <TabControl x:Name="MainTabControl" Margin="0,40,0,0">
+            <!-- Вкладка продажи билетов -->
+            <TabItem Header="Продажа билетов">
+                <StackPanel Margin="20">
+                    <TextBlock Text="Продажа билетов" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10">
+                        <Button Content="Добавить взрослый билет (500 руб)" 
+                                Click="AddAdultTicket_Click" 
+                                Padding="10" Margin="0,0,10,0"/>
+                        <Button Content="Добавить детский билет (250 руб)" 
+                                Click="AddChildTicket_Click"
+                                Padding="10"/>
+                    </StackPanel>
+
+                    <TextBlock Text="Корзина:" FontWeight="Bold" Margin="0,20,0,10"/>
+                    <ListBox x:Name="CartListBox" Height="150">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Type}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock x:Name="TotalText" FontSize="16" FontWeight="Bold" Margin="0,10"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20">
+                        <Button Content="Оформить продажу" Click="ProcessSale_Click" 
+                                Background="Green" Foreground="White" Padding="15,8"/>
+                        <Button Content="Очистить корзину" Click="ClearCart_Click" 
+                                Background="Red" Foreground="White" Padding="15,8" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <!-- Вкладка проверки билетов -->
+            <TabItem Header="Проверка билетов">
+                <StackPanel Margin="20">
+                    <TextBlock Text="Проверка билетов" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                    <TextBox x:Name="TicketIdTextBox" 
+                             Width="200" Height="30" 
+                             FontSize="14" Margin="0,0,0,10"
+                             Text="Введите ID билета"/>
+
+                    <Button Content="Проверить билет" Click="CheckTicket_Click" 
+                            Width="120" Height="30"/>
+
+                    <TextBlock x:Name="CheckResultText" FontSize="16" Margin="0,20" FontWeight="Bold"/>
+                </StackPanel>
+            </TabItem>
+
+            <!-- Вкладка отчетов -->
+            <TabItem Header="Отчеты">
+                <StackPanel Margin="20">
+                    <TextBlock Text="Отчет по продажам" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                    <Button Content="Показать сегодняшние продажи" 
+                            Click="ShowTodaySales_Click" 
+                            Width="200" Height="30" Margin="0,0,0,10"/>
+
+                    <ListBox x:Name="ReportListBox" Height="200">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="5">
+                                    <TextBlock Text="{Binding Id}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Type}"/>
+                                    <TextBlock Text="{Binding SaleDate}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock x:Name="TotalSalesText" FontSize="14" FontWeight="Bold" Margin="0,10"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
+
+
 </Window>
