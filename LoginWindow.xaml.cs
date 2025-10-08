@@ -5,9 +5,6 @@ using System.Windows.Controls;
 
 namespace ZooTicket
 {
-    /// <summary>
-    /// Логика взаимодействия для LoginWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
         private List<User> users = new List<User>();

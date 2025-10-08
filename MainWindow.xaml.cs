@@ -12,19 +12,15 @@ using System.Windows.Navigation;
 
 namespace ZooTicket
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private List<Ticket> cart = new List<Ticket>();
         private List<Ticket> allTickets = new List<Ticket>();
         private List<User> users = new List<User>();
         private User currentUser;
-        private string ticketsFile = @"D:\TicketData\tickets.json"; // Убраны лишние кавычки
+        private string ticketsFile = @"D:\TicketData\tickets.json";
         private string usersFile = @"D:\TicketData\users.json";
 
-        // Цены вынесли в поля, админ может изменить
         private decimal adultPrice = 500m;
         private decimal childPrice = 250m;
 
@@ -118,8 +114,6 @@ namespace ZooTicket
 
         private void LoadPrices()
         {
-            // можно хранить в small settings файл, но пока если usersFile есть, оставить дефолт
-            // Если нужно — добавить отдельный файл с настройками.
             AdultPriceTextBox.Text = adultPrice.ToString();
             ChildPriceTextBox.Text = childPrice.ToString();
         }
@@ -134,7 +128,6 @@ namespace ZooTicket
         #region Роли и разрешения
         private void ApplyRolePermissions()
         {
-            // По умолчанию все вкладки доступны — потом выключим лишние
             AdminTab.IsEnabled = false;
             SalesTab.IsEnabled = false;
             CheckTab.IsEnabled = false;
@@ -156,7 +149,6 @@ namespace ZooTicket
                     CheckTab.IsEnabled = true;
                     break;
                 default:
-                    // ничего
                     break;
             }
         }
@@ -439,7 +431,6 @@ namespace ZooTicket
             TicketIdTextBox.Focus();
         }
 
-        // --- NewUserName placeholder ---
         private void NewUserName_TextChanged(object sender, TextChangedEventArgs e)
         {
             NewUserNamePlaceholder.Visibility = string.IsNullOrEmpty(NewUserName.Text)
@@ -451,7 +442,6 @@ namespace ZooTicket
             NewUserName.Focus();
         }
 
-        // --- NewUserPassword placeholder ---
         private void NewUserPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
             NewUserPasswordPlaceholder.Visibility = string.IsNullOrEmpty(NewUserPassword.Password)
