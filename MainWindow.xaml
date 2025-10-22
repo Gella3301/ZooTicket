@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Border Background="#2E86AB" Padding="10" Height="40" VerticalAlignment="Top">
+        <Border Background="DarkRed" Padding="10" Height="40" VerticalAlignment="Top">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
